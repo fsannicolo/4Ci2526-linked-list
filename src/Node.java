@@ -8,7 +8,7 @@ public class Node {
 
     public Node(int newValue) {
         this.value = newValue;
-        this.next = null;
+        this.next = null;       // default
     }
 
     public int getValue() {
