@@ -11,5 +11,14 @@ public class App {
         
         list.append(n1);
         list.print();  
+
+        Node n3 = new Node(0);
+        Node n4 = new Node(67);
+
+        list.add(0, n3);
+        list.add(2, n4);
+        list.print();
+
+        System.out.println(list.get(4));
     }
 }
