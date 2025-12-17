@@ -20,5 +20,12 @@ public class App {
         list.print();
 
         System.out.println(list.get(4));
+
+        Node r = list.remove(2);
+        System.out.println("Nodo rimosso: " + r);
+
+        // boolean res = list.remove(n4);
+        // System.out.println("Nodo rimosso? " + res);
+        list.print();
     }
 }

@@ -120,6 +120,92 @@ public class CustomList {
     }
 
 
+    /**
+     * Removes a node from the list giving its position, returning the removed node
+     * @param index position to delete
+     * @return the removed node
+     */
+    public Node remove(int index) throws IndexOutOfBoundsException {
+
+        // checks if the index is valid
+        if (index < 0 || index >= size())
+            throw new IndexOutOfBoundsException("Invalid index");
+
+        Node removed;
+
+        // if the node is the first one
+        if (index == 0) {
+            removed = head;
+            head = head.getNext();  // head reference is updated
+        }
+
+        // removes a node inside the list
+        else {
+            Node prev = get(index - 1);
+            removed = prev.getNext();       // I can't reach this node after the removal
+            prev.setNext(prev.getNext().getNext());     // skip the index-th node
+        }
+
+        return removed;
+    }
+
+    /**
+     * Removes a node from the list if present
+     * @param n the node to be searched and removed
+     * @return true if the node was removed, false otherwise
+     */
+    public boolean remove(Node n) {
+
+        // checks whether the node exsists
+        if (n == null) return false;
+
+        int index = indexOf(n);
+        if (index < 0) return false;
+
+        return remove(index) != null;
+    }
+
+    /**
+     * Returns the position in the list of a specific node, if present
+     * @param n node to be searched
+     * @return the 0-based position in the list, -1 if not present
+     */
+    public int indexOf(Node n) {
+
+        Node cursor = head;
+        int index = 0;  // how many nodes are visited
+
+        while (cursor != null) {
+
+            if (cursor.equals(n))   // cursor == n
+                return index;
+
+            cursor = cursor.getNext();
+            index++;
+        }
+
+        return -1;    // not found
+    }
+
+    /**
+     * Overwrites a node with a new one, given its position
+     * @param index position of the old node
+     * @param newNode new node that replaces the old one
+     */
+    public void set(int index, Node newNode) {
+
+    }
+
+    /**
+     * Checks if the node is contained in the list
+     * @param n node to be found
+     * @return true if the node is present, false otherwise
+     */
+    public boolean contains(Node n) {
+
+        return false;
+    }
+
     private int sizeRec(Node cursor) {
 
         // exit clause
