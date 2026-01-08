@@ -192,8 +192,25 @@ public class CustomList {
      * @param index position of the old node
      * @param newNode new node that replaces the old one
      */
-    public void set(int index, Node newNode) {
+    public void set(int index, Node newNode) throws IndexOutOfBoundsException {
 
+        // checks if the index is valid
+        if (index < 0 || index >= size()) 
+            throw new IndexOutOfBoundsException("Invalid index");
+
+        if (newNode == null) return;
+
+        // set the first node
+        if (index == 0) {
+            newNode.setNext(head.getNext());
+            head = newNode;     // important!
+            return;
+        }
+
+        // generic case
+        Node prev = get(index - 1);
+        newNode.setNext(prev.getNext().getNext()); 
+        prev.setNext(newNode); 
     }
 
     /**
@@ -203,7 +220,35 @@ public class CustomList {
      */
     public boolean contains(Node n) {
 
+        // node to sweep the list
+        Node cursor = head;
+
+        if (n == null) return false;
+
+        while (cursor != null) {
+
+            if (cursor.equals(n))
+                return true;
+
+            cursor = cursor.getNext();
+        }
+
         return false;
+    }
+
+    public boolean containsRec(Node n) {
+
+        return containsRec(head, n);
+    }
+    
+    private boolean containsRec(Node cursor, Node n) {
+        
+        // exit clauses
+        if (cursor == null) return false;
+        if (cursor.equals(n)) return true;
+
+        // recursive call
+        return containsRec(cursor.getNext(), n);
     }
 
     private int sizeRec(Node cursor) {

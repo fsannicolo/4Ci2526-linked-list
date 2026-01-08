@@ -27,5 +27,9 @@ public class App {
         // boolean res = list.remove(n4);
         // System.out.println("Nodo rimosso? " + res);
         list.print();
+
+        Node n5 = new Node(-3);
+        list.set(2, n5);
+        list.print();
     }
 }
